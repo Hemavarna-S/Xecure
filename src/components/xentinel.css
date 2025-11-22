@@ -1,0 +1,116 @@
+/* Root layout */
+.xentinel-root {
+  height: 100vh;
+  width: 100%;
+  background: radial-gradient(circle at 20% 30%, #02142a, #010915, #00040b);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Futuristic glowing animated circle */
+.neon-orbital-bg {
+  position: absolute;
+  width: 1600px;
+  height: 1600px;
+  border-radius: 50%;
+  background: conic-gradient(
+      from 0deg,
+      rgba(0, 255, 255, 0.15),
+      rgba(0, 150, 255, 0.35),
+      rgba(0, 80, 255, 0.18)
+    ),
+    radial-gradient(circle, rgba(0,255,255,0.18), transparent 65%);
+  filter: blur(60px);
+  animation: rotateGlow 14s linear infinite;
+  opacity: 0.55;
+}
+
+@keyframes rotateGlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Main Card */
+.xentinel-card {
+  width: 420px;
+  padding: 28px;
+  background: rgba(0, 15, 35, 0.65);
+  
+  border: 1px solid rgba(0, 170, 255, 0.22);
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 0 40px rgba(0, 190, 255, 0.25);
+  z-index: 20;
+  animation: fadeIn 1.2s ease forwards;
+  color: #ffffff;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Card input */
+.xentinel-card input,
+.xentinel-card .ant-input,
+.xentinel-card .ant-picker,
+.xentinel-card .ant-form-item-label label {
+  color: #ffffff !important;
+}
+
+.xentinel-card input::placeholder,
+.xentinel-card .ant-input::placeholder {
+  color: #ffffff !important;
+  opacity: 0.6;
+  background: rgba(0, 15, 35, 0.65) !important;
+}
+
+.xentinel-card .ant-input {
+  background: rgba(0, 15, 35, 0.65) !important;
+}
+
+.xentinel-card .ant-picker {
+  background: rgba(0, 15, 35, 0.65) !important;
+}
+
+.xentinel-card .ant-input-prefix,
+.xentinel-card .ant-picker-suffix {
+  color: #ffffff !important;
+}
+
+/* Title */
+.xentinel-title {
+  text-align: center;
+  color: #00d5ff !important;
+  letter-spacing: 1px;
+}
+
+/* Subtitle */
+.xentinel-subtitle {
+  display: block;
+  text-align: center;
+  color: #c7edff;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+/* Button */
+.xentinel-btn {
+  width: 100%;
+  height: 44px;
+  background: linear-gradient(90deg, #00c6ff, #008cff);
+  border: none;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 0 18px rgba(0, 160, 255, 0.28);
+  transition: 0.3s;
+}
+
+.xentinel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 26px rgba(0, 200, 255, 0.5);
+}

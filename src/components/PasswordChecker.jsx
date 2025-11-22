@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input, Button, DatePicker, Form, Typography, Alert, Card } from "antd";
 import { commonPasswords } from "../data/commonPasswords";
+import "./xentinel.css";
 
 const { Title, Text } = Typography;
 
@@ -11,49 +12,49 @@ const PasswordChecker = () => {
     const fullName = values.fullName.toLowerCase();
     const username = values.username.toLowerCase();
     const dob = values.dob.format("YYYY-MM-DD");
-
     const password = values.password.toLowerCase();
 
-    // 1. Check dictionary match
     const isCommon = commonPasswords.includes(password);
 
-    // 2. Check if password relates to personal info
     const personalInfo = [
       fullName,
       ...fullName.split(" "),
       username,
       dob,
-      ...dob.split("-"), // year, month, day
+      ...dob.split("-"),
     ];
 
-    const isRelated = personalInfo.some((info) => info && info.length > 0 && password.includes(info));
+    const isRelated = personalInfo.some(
+      (info) => info && info.length > 0 && password.includes(info)
+    );
 
-    // Output logic
     if (isCommon) {
       setResult({
         status: "error",
-        message: "Your password is found in the common password list. Very Weak!",
+        message: "⚠️ Extremely weak! Your password exists in the common list.",
       });
     } else if (isRelated) {
       setResult({
         status: "warning",
-        message: "Your password is related to your personal details. Weak!",
+        message: "⚠️ Weak! Your password is related to personal details.",
       });
     } else {
       setResult({
         status: "success",
-        message: "Strong! Not in common list and not related to your personal details.",
+        message: "✔ Strong! Not common and not predictable.",
       });
     }
   };
 
   return (
-    <div style={{ width: "450px", margin: "0 auto", marginTop: "50px" }}>
-      <Card style={{ padding: "20px", borderRadius: "10px" }}>
-        <Title level={2} style={{ textAlign: "center" }}>
-          Xentinel
-        </Title>
-        <Text strong style={{ display: "block", textAlign: "center", marginBottom: "20px" }}>
+    <div className="xentinel-root">
+      {/* Futuristic neon animated background */}
+      <div className="neon-orbital-bg"></div>
+
+      <Card className="xentinel-card">
+        <Title level={2} className="xentinel-title">Xentinel</Title>
+
+        <Text className="xentinel-subtitle">
           Advanced Password Dictionary Checker
         </Text>
 
@@ -73,16 +74,12 @@ const PasswordChecker = () => {
           <Form.Item
             label="Password"
             name="password"
-            rules={[{ required: true, message: "Password is required" }]}
+            rules={[{ required: true }]}
           >
             <Input.Password />
           </Form.Item>
 
-          <Button
-            type="primary"
-            htmlType="submit"
-            style={{ width: "100%", height: "40px", marginTop: "10px" }}
-          >
+          <Button type="primary" htmlType="submit" className="xentinel-btn">
             Check Password
           </Button>
         </Form>
